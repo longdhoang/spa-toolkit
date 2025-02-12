@@ -1,6 +1,3 @@
-# spa-toolkit
-Web Single Page Application Guide
-
 
 
 1. script on demand loading
@@ -30,9 +27,11 @@ Web Single Page Application Guide
       Widget has validators
       Widget has helpers
       Widget has view, which is a container of one or more physical HTML nodes rendered as specified by CSS  rules
+      Widget can have a parent widget
+      Widget can have child widget(s)
 
-      React FiberNode tree is overkilled, JSX generates fatter DOM images due to interpolation. Change detection are exhaustive,
-      and serialized, hence updates.
+      React FiberNode tree is overkilled, JSX generates fatter DOM images due to fragmentation from javascript expression interpolation. Change detection are exhaustive,
+      and serialized, hence updates is effectively serialized.
 
       Widget tree is leaner, change detection and update is perform case by case, and limited to locally, less prone for race condition.
 
@@ -46,8 +45,11 @@ Web Single Page Application Guide
 
 7. Reuse
         a. Widget hierarchy via prototype - prototype is a beautiful concept.
+        b. A widget is well defined, and complete, i.e. it is functional by itself, and means exactly one thing
+                  at all time.
 
-8. Exploit javascript strength
+
+9. Exploit javascript strength
         a. function is first class
         b. function has constructor, usually itself
         c. function has prototype
@@ -59,13 +61,13 @@ Web Single Page Application Guide
            would behave as a smart object
 
 
-9. Execution context
+10. Execution context
         a. browser does the work
         b. application talks to the browser using WEB API, HTML DOM API, SVG API, etc
         c. application processing logic should not take less than 100ms, 
             longer than that, using setTimeout to yield the thread, and comeback later, until done.
 
-10. Asynchronous
+11. Asynchronous
         a. callback should belong to widget as a behavior, not using arrow function, maintenance is over convenience.
         b. make sure to handle error accordingly, or whether chaining is safe
         c. let the browser handle DOM document updates via message/event queue, to achieve concurrency
@@ -73,21 +75,22 @@ Web Single Page Application Guide
             i. XhrXMLRequest, if you can, for proper error handling - DNS, TCP/IP, HTTP, server host, then API
 
 
-11. Inter widgets communications
+12. Inter widgets communications
         a. Producer/subsciber
         b. Centralized mechanisms for maintenance, and exposure.
+        c. callback passed to widget constructor, or a repository at global scope.
 
-12. Caching
+13. Caching
         a. dictionaries, constants
         b. API data fetch, if cached, make sure they need to be updated timely.
 
 
-13. Typescript
+14. Typescript
     Eventually, the application will grow, and Typescript is the only option to help writing complex codes effectively - 
     static type checking goes a long way.
 
 
-14. Development
+15. Development
         a. observe the picture carefully - what is the problem, or what is the ask.
         b. identify details - do I understand the problem, or the need?
         c. ask questions until there is no more questions, i.e. brainstorm sessions
@@ -98,7 +101,7 @@ Web Single Page Application Guide
         f. once POC/feasibility is confirmed, incrementally deliver the features.
         
 
-15. Messures of success
+16. Messures of success
         1. SPA advantages - advanced programming techniques and pleasant user experiences - thich client/thin server, 
             as oppose to thin client/thick server, utilising user laptop resources.
         2. Preserve the best of html page browsing
@@ -107,32 +110,8 @@ Web Single Page Application Guide
         3. Print to PDF - WYSIWYG.
 
 
-16. If using React, alternate for hydrate
-        1. Generate static as preview.
-        2. Client side rootRender(), then replace current DOM with the new DOM.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+17. If using React for SPA, and want to improve search engine presence, here is a viable alternate for hydrate
+        1. NextJs or Remix, "use client" through out, generate static html for landing page as preview.
+        2. Client side rootRender(), then replace current DOM from static html with the new DOM from FiberRootNode
 
 
