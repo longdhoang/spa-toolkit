@@ -107,6 +107,24 @@ Web Single Page Application Guide
         3. Print to PDF - WYSIWYG.
 
 
+16. If using React, alternate for hydrate
+        1. Generate static as preview.
+        2. Client side rootRender(), then replace current DOM with the new DOM.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
