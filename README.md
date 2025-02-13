@@ -1,4 +1,10 @@
 
+Design considerations/lessions learned
+
+0.A SPA is a javascript application that interact with users via the HTML DOM document. HTML DOM document is actually application, doing the work.
+        SPA injects the data, and composes the DOM document. The building blocks are the DOM nodes.
+        HTML scripts are ideal for static component. For dynamic content components, it's all in memory dom node objects.
+        Text strings are always embedded as a text node.
 
 1. script on demand loading
         getD3Insance() {
